@@ -243,6 +243,7 @@
             </ul>
           </div>
           <div class="posts portfolio">
+            <?php site_url('menucontroller/fetchAllMenu'); ?>
             <article class="col-md-4 col-xs-6 meat"><a href="portfolio-single.html"><img src="<?php echo base_url(); ?>assets/images/recent-post-1.jpg"/>
                 <div class="hover"><i class="fa fa-cutlery"></i>
                   <h2>fresh salad for a hot summer</h2>
