@@ -1,5 +1,6 @@
 <?php
-    $to = 'support@anpsthemes.com';
+    require_once '../vendor/autoload.php';
+    $to = 'kristiantokarim@gmail.com';
     $from = 'info@anpsthemes.com';
     $subject = 'Mail from Kataleya';
 
@@ -21,5 +22,23 @@
             'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-    mail($to, $subject, $message, $headers);
+    //mail($to, $subject, $message, $headers);
+    $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')
+      ->setUsername('kristiantokarim@gmail.com')
+      ->setPassword('xx');
+
+    $messagex = Swift_Message::newInstance();
+ 
+    //Give the message a subject
+    $messagex->setSubject($subject)
+      ->setFrom($to)
+      ->setTo($to)
+      ->setBody($message)
+      ->addPart($message, 'text/html');
+ 
+    //Create the Mailer using your created Transport
+    $mailer = Swift_Mailer::newInstance($transport);
+ 
+    //Send the message
+    $result = $mailer->send($messagex);
 ?>

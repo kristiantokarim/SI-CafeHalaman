@@ -474,20 +474,18 @@
               </ul>
             </div>
             <div class="col-md-6">
-              <form role="form">
+              <form role="form" data-form="contact" data-success="Your mail was successfully sent! ">
                 <div class="form-group">
-                  <input type="email" placeholder="e-mail">
+                  <input type="email" placeholder="e-mail" name="name">
                 </div>
                 <div class="form-group">
-                  <select>
-                    <option>test</option>
-                  </select>
+                  <input type="text" placeholder="subject" name="subject">
                 </div>
                 <div class="form-group">
-                  <input type="tel" placeholder="phone">
+                  <input type="tel" placeholder="phone" name="phone">
                 </div>
                 <div class="form-group">
-                  <textarea placeholder="message"></textarea>
+                  <textarea placeholder="message" name="message"></textarea>
                 </div>
                 <button type="submit" class="btn btn-md">submit				</button>
               </form>

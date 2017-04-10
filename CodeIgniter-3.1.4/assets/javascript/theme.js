@@ -731,6 +731,8 @@ jQuery(function($) {
 	  if( window.location.href.indexOf('www.') === -1 ) {
 	  	siteURL = siteURL.replace('www.', '');
 	  }
+	  console.log(formData);
+	  
 	  if(checkFormValidation(el)) {
 	      try {
 	          $.ajax({
