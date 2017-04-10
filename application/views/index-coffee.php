@@ -248,61 +248,6 @@
           </div>
         </div>
       </section>
-      <section>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <svg style="display:none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="126px" height="112px" viewBox="0 0 126 112" enable-background="new 0 0 126 112" xml:space="preserve" class="mini-logo">
-                <g>
-                  <g>
-                    <g>
-                      <path d="M63.016,1.134C55.414,6.166,53.994,17.37,53,29c5.021,1.321,9.101,3.579,10.016,8.998 C63.93,32.579,68.01,30.321,73.031,29C72.037,17.37,70.617,6.166,63.016,1.134z"></path>
-                    </g>
-                  </g>
-                </g>
-                <g>
-                  <g>
-                    <g>
-                      <path d="M63.125,49.996C61.076,24.065,20.794,22.264,1,34c0,0.667,0.167,0.25,0.167,0.917C7.297,55.219,27.661,71.48,55.109,64 c-6.523,7.979,3.71,30.104-5.01,40c3.785,3.008,10.959,1.13,13.026-2.999c2.068,4.129,9.242,6.007,13.027,2.999 c-8.721-9.896,1.512-32.021-5.011-40c27.448,7.48,47.813-8.781,53.942-29.083c0-0.667,0.167-0.25,0.167-0.917 C105.457,22.264,65.175,24.065,63.125,49.996z"></path>
-                    </g>
-                  </g>
-                </g>
-                <g>
-                  <g>
-                    <g>
-                      <path d="M50,70c-25.705-1.039-29.236,20.098-34,40C31.967,101.301,53.156,97.822,50,70z"></path>
-                    </g>
-                  </g>
-                </g>
-                <g>
-                  <g>
-                    <g>
-                      <path d="M76.297,70c25.705-1.039,29.236,20.098,34,40C94.33,101.301,73.141,97.822,76.297,70z"></path>
-                    </g>
-                  </g>
-                </g>
-              </svg>
-              <h2 id="blends" class="section-heading text-center">make a reservation</h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-              <form role="form" data-form="reservation" data-success="You have successfully made a reservation!" class="box">
-                <div class="form-group">
-                  <input type="text" placeholder="name" name="name">
-                </div>
-                <div class="form-group">
-                  <input type="email" placeholder="email" name="email">
-                </div>
-                <div class="form-group">
-                  <input type="tel" placeholder="phone" name="phone">
-                </div>
-                <button type="submit" class="btn btn-md">submit				</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
       <section id="map" class="map"></section>
       <section class="style-2">
         <div class="container">
