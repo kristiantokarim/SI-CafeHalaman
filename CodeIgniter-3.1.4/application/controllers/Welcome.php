@@ -47,4 +47,15 @@ class Welcome extends CI_Controller {
 	public function register() {
 		$this->load->view('register');
 	}
+
+	public function comments() {
+		$email_data = $this->input->post('email');
+		$phone_data = $this->input->post('phone');
+		$message_data = $this->input->post('message');
+		$rating_data = $this->input->post('rating');
+		echo $email_data.'\n';
+		echo $phone_data.'\n';
+		echo $message_data.'\n';
+		echo $rating_data.'\n';
+	}
 }

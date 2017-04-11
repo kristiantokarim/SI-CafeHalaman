@@ -123,18 +123,29 @@
                   </li>
                 </ul>
                 <h5 class="comments-submit-title">leave a comment</h5>
-                <form class="comment-form">
+                <form class="comment-form" method="post" action="/welcome/comments">
                   <div class="row">
-                    <div class="col-sm-6">
-                      <input type="email" placeholder="e-mail">
-                    </div>
-                    <div class="col-sm-6">
-                      <input type="text" placeholder="phone">
+                    <div class="col-sm-12">
+                      <input type="email" placeholder="e-mail" name = "email">
                     </div>
                   </div>
                   <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" placeholder="phone" name = "phone ">
+                    </div>
+                    <div class="col-sm-6">
+                      <select name="rating">
+                        <option value="1">Really Bad</option>
+                        <option value="2">Bad</option>
+                        <option value="3">Okay</option>
+                        <option value="4">Good</option>
+                        <option value="5">Very Good</option>
+                      </select>
+                    </div>
+                    </div>
+                  <div class="row">
                     <div class="col-sm-12">
-                      <textarea placeholder="message"></textarea>
+                      <textarea placeholder="message" name="message"></textarea>
                     </div>
                   </div>
                   <button data-form="submit" class="btn btn-md">submit</button>
