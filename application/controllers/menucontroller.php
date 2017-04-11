@@ -6,7 +6,6 @@ class MenuController extends CI_Controller {
 	{
 		$data = $this->menumodel->getAllMenu();
     echo "<h1>FROM CONTROLLER</h1>";
-    return $data;
 	}
 }
 ?>

@@ -244,31 +244,29 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <form role="form">
+              <p><?php echo $this->session->flashdata('statusMsg'); ?></p>
+              <form role="form" id="regist" method="post" enctype="multipart/form-data" action="">
                 <ul class="nav nav-tabs style-2">
                   <li class="active"><a href="#tab-0" data-toggle="tab">Silver</a></li>
                   <li><a href="#tab-1" data-toggle="tab">Gold</a></li>
                   <li><a href="#tab-2" data-toggle="tab">Platinum</a></li>
                 </ul>
+                <input id="memberopt" name="memtype" type="hidden" value="#tab-0"/>
                 <div style="margin:10px"></div>
                 <div class="form-group">
-                  <input type="text" placeholder="Nama">
+                  <input type="text" name="name" placeholder="Nama"/>
                 </div>
                 <div class="form-group">
-                  <input type="text" placeholder="E-mail">
+                  <input type="email" name="email" placeholder="E-mail"/>
                 </div>
                 <div class="form-group">
-                  <input type="tel" placeholder="phone">
+                  <input type="tel" name="phone" placeholder="phone"/>
                 </div>
-                <div class="col-md-6">
-                  <button type="button" class="btn btn-sm">Foto KTP       </button>
-                </div>
-                <div class="col-md-6">
-                  <button type="button" class="btn btn-sm">Foto Struk       </button>
-                </div>
-                <button type="button" class="btn btn-sm">Foto Bukti Pembayaran       </button>
+                Foto KTP<input type="file" name="ktp" class=""/><br>
+                Foto Struk<input type="file" name="struk" class=""/><br>
+                Foto Bukti Pembayaran<input type="file" name="payment" class=""/><br>
 
-                <button type="submit" class="btn btn-md">Register       </button>
+                <input type="submit" name="submitmember" id="submitbtn" class="btn btn-md" value="Register"/>
               </form>
             </div>
             <div class="col-md-5">
@@ -351,6 +349,15 @@
         responsive 			: true,
         showCircleTimer		: false
        });
+      });
+    </script>
+    <script>
+      $("#regist").submit(function(event) {
+        console.log("HAHAHA");
+          var $ref_this = $("ul.nav-tabs.style-2 li.active> a").attr("href");
+          console.log($ref_this);
+          $("#memberopt").val($ref_this);
+          alert($ref_this + $("#memberopt").val());
       });
     </script>
   </div>
