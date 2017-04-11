@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once '../vendor/autoload.php';
     $to = 'kristiantokarim@gmail.com';
     $from = 'support@anpsthemes.com';
@@ -19,7 +20,6 @@
     $message .= '<table cellpadding="0" cellspacing="0">';
     foreach ($_POST['order_items'] as $key => $value) {
         $message .= "<tr><td style='padding: 5px 20px 5px 5px'><strong>" . urldecode($key) . ":</strong>" . "</td><td style='padding: 5px; color: #444'>" . $value . "</td></tr>";
-        echo "YEYEYEYEYEYYEYEYE: ".substr($value, 2)."\n";
     }
     $message .= '</table>';
 
@@ -34,12 +34,23 @@
     }
     $message .= '</table>';
 
+    $userip = $_POST['form_data']['userip'];
+    $query = "SELECT id_pengguna FROM pengguna WHERE ip_address = '".$userip."';";
+    $result = mysqli_query($link, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+      $firstrow = mysqli_fetch_assoc($result);
+      $idpengguna = $firstrow["id_pengguna"];
+    } else {
+      die("NO USER ID :(");
+    }
+
     $nama = $_POST['form_data']['name'];
     $email = $_POST['form_data']['email'];
     $phone = $_POST['form_data']['phone'];
     $alamat = $_POST['form_data']['address'];
 
-    $query = "INSERT INTO pesanan (id_pengguna, nama, alamat, email, telepon) VALUES ('5','".$nama."','".$alamat."','".$email."','".$phone."');";
+    $query = "INSERT INTO pesanan (id_pengguna, nama, alamat, email, telepon) VALUES ('".$idpengguna."','".$nama."','".$alamat."','".$email."','".$phone."');";
     if(mysqli_query($link, $query)){
         echo "Record pesanan inserted successfully.";
         $idpesanan = mysqli_insert_id($link);

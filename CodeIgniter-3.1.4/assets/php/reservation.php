@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once '../vendor/autoload.php';
     $to = 'kristiantokarim@gmail.com';
     $from = 'support@anpsthemes.com';
@@ -27,13 +28,24 @@
         }
     }
 
+    $userip = $_POST['form_data']['userip'];
+    $query = "SELECT id_pengguna FROM pengguna WHERE ip_address = '".$userip."';";
+    $result = mysqli_query($link, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+      $firstrow = mysqli_fetch_assoc($result);
+      $idpengguna = $firstrow["id_pengguna"];
+    } else {
+      die("NO USER ID :(");
+    }
+
     $datetimestr = $_POST['form_data']['year']."-".$_POST['form_data']['month']."-".$_POST['form_data']['day']." ".$_POST['form_data']['hour'].":".$_POST['form_data']['minute'].":00";
     $nama = $_POST['form_data']['nama'];
     $jumlah = $_POST['form_data']['jumlah_orang'];
     $email = $_POST['form_data']['email'];
     $phone = $_POST['form_data']['phone'];
 
-    $query = "INSERT INTO reservasi (id_pengguna, nama, email, telepon, waktu_reservasi, jumlah_orang) VALUES ('5','".$nama."','".$email."','".$phone."','".$datetimestr."','".$jumlah."');";
+    $query = "INSERT INTO reservasi (id_pengguna, nama, email, telepon, waktu_reservasi, jumlah_orang) VALUES ('".$idpengguna."','".$nama."','".$email."','".$phone."','".$datetimestr."','".$jumlah."');";
     if(mysqli_query($link, $query)){
         echo "Records inserted successfully.";
     } else{

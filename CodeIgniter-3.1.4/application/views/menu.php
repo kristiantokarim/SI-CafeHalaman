@@ -100,6 +100,7 @@
             <h2 class="color text-center">your delivery info</h2>
             <form role="form" data-menu-order="customer" data-success="You order was successfully sent!">
               <div class="form-group">
+                <input type="hidden" name="userip" value="<?php echo $_SESSION['ip']; ?>">
                 <input type="text" placeholder="name" id="order-name" name="name">
               </div>
               <div class="form-group">
@@ -145,10 +146,11 @@
               <li><a href="<?php echo base_url() ?>#about-us">About Us</a></li>
               <li class="active"><a href="#">Menu</a></li>
               <li><a href="<?php echo base_url() ?>#contact">Contact Us</a></li>
+              <li><a href="<?php echo site_url('welcome/event')?>">Event</a></li>
               <li><a href="#">Features</a>
                 <ul class="sub-menu">
-                  <li><a href="<?php echo site_url('router/open_url/reservation'); ?>">Reserve a Table</a></li>
-                  <li><a href="<?php echo site_url('router/open_url/register'); ?>">Membership</a></li>
+                  <li><a href="<?php echo site_url('welcome/reservation'); ?>">Reserve a Table</a></li>
+                  <li><a href="<?php echo site_url('member'); ?>">Membership</a></li>
                 </ul>
               </li>
             </ul>

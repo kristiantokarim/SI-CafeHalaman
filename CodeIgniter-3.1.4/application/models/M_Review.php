@@ -10,8 +10,7 @@ class M_Review extends CI_Model {
 		$data = array(
 			'id_pengguna' => $id_pengg->result()[0]->id_pengguna,
 			'isi_review' => $isi,
-			'nama_reviewer' => $nama,
-			'created_time' => $date
+			'nama_reviewer' => $nama
 		);
 		$this->db->insert('review', $data);
 		$insert_id = $this->db->insert_id();

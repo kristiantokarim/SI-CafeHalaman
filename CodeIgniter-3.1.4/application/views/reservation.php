@@ -36,12 +36,13 @@
                 <li style="display:none"><a href="<?php echo base_url() ?>#home">Promo</a></li>
                 <li><a href="<?php echo base_url() ?>#promo">Promo</a></li>
                 <li><a href="<?php echo base_url() ?>#about-us">About Us</a></li>
-                <li><a href="site_url('router/open_url/portfolio')">Menu</a></li>
+                <li><a href="<?php echo site_url('welcome/menu'); ?>">Menu</a></li>
                 <li><a href="<?php echo base_url() ?>#contact">Contact Us</a></li>
+                <li><a href="<?php echo site_url('welcome/event'); ?>">Event</a></li>
                 <li class="active"><a href="#">Features</a>
                   <ul class="sub-menu">
                     <li class="active"><a href="#">Reserve a Table</a></li>
-                    <li><a href="<?php echo site_url('router/open_url/register'); ?>">Membership</a></li>
+                    <li><a href="<?php echo site_url('member'); ?>">Membership</a></li>
                   </ul>
                 </li>
               </ul>
@@ -90,6 +91,7 @@
                   <input type="text" data-date="year" name="year" value="2014">
                   <input type="text" data-date="hour" name="hour" value="21">
                   <input type="text" data-date="minute" name="minute" value="00">
+                  <input type="hidden" name="userip" value="<?php echo $_SESSION['ip']; ?>">
                 </div>
               </div>
               <div class="form-group">

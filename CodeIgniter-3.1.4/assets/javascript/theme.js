@@ -460,7 +460,7 @@ jQuery(function($) {
 		e.preventDefault();
 	});
 
-	if( $.cookie('kataleya-order') ) {
+	/*if( $.cookie('kataleya-order') ) {
 		var vals = $.cookie('kataleya-order').split(';');
 		var total = 0;
 
@@ -480,7 +480,7 @@ jQuery(function($) {
 	if( $.cookie('kataleya-order-notes') ) {
 		var notes = $.cookie('kataleya-order-notes');
 		$('.order-menu .order-notes').val(notes).removeClass('hidden');
-	}
+	}*/
 
 	/* Content Form */
 

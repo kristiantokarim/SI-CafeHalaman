@@ -57,9 +57,9 @@
             <?php
               foreach($categories as $category) { ?>
                 <section>
-                <h2 class="color text-center"><?php echo $category->nama_kategori;?></h2> 
+                <h2 class="color text-center"><?php echo $category->nama_kategori;?></h2>
 
-                <?php foreach($menus as $menu) { 
+                <?php foreach($menus as $menu) {
                     if ($menu->nama_kategori == $category->nama_kategori) { ?>
                       <article class="food-item price-right">
                       <header>
@@ -70,84 +70,13 @@
                           <button class="plus">+</button>
                         </div>
                       </header>
-                    </article> 
+                    </article>
             <?php
                   }
                 }
                 ?></section><?php
               }
             ?>
-            <!--h2 class="color text-center">delicious soups</h2>
-            <article id="chicken-pizza" class="food-item price-right">
-              <header>
-                <h3>tomato soup</h3>
-                <h4 class="price"><span>$</span>4,5</h4>
-                <div class="quantity">
-                  <button class="minus">-</button><span class="num">0</span>
-                  <button class="plus">+</button>
-                </div>
-              </header>
-              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
-            </article>
-            <article id="pepperoni-pizza" class="food-item price-right">
-              <header>
-                <h3>chicken soup</h3>
-                <h4 class="price"><span>$</span>6.6</h4>
-                <div class="quantity">
-                  <button class="minus">-</button><span class="num">0</span>
-                  <button class="plus">+</button>
-                </div>
-              </header>
-              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
-            </article>
-            <article id="kebab-pizza" class="food-item price-right">
-              <header>
-                <h3>mushroom soup</h3>
-                <h4 class="price"><span>$</span>5</h4>
-                <div class="quantity">
-                  <button class="minus">-</button><span class="num">0</span>
-                  <button class="plus">+</button>
-                </div>
-              </header>
-              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
-            </article>
-          </section>
-          <section>
-            <h2 class="color text-center">main course </h2>
-            <article id="rucola-pizza" class="food-item price-right">
-              <header>
-                <h3>beef stake</h3>
-                <h4 class="price"><span>$</span>6</h4>
-                <div class="quantity">
-                  <button class="minus">-</button><span class="num">0</span>
-                  <button class="plus">+</button>
-                </div>
-              </header>
-              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
-            </article>
-            <article id="cheezy-pizza" class="food-item price-right">
-              <header>
-                <h3>chicken salad</h3>
-                <h4 class="price"><span>$</span>5</h4>
-                <div class="quantity">
-                  <button class="minus">-</button><span class="num">0</span>
-                  <button class="plus">+</button>
-                </div>
-              </header>
-              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
-            </article>
-            <article id="tomatto-pizza" class="food-item price-right">
-              <header>
-                <h3>lamb chops </h3>
-                <h4 class="price"><span>$</span>4</h4>
-                <div class="quantity">
-                  <button class="minus">-</button><span class="num">0</span>
-                  <button class="plus">+</button>
-                </div>
-              </header>
-              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
-            </article>
-          </section-->
           <div class="order-footer">
             <h6 class="price text-center color">total: $<span>0</span></h6>
             <textarea placeholder="Add Notes" class="order-notes hidden"></textarea>
@@ -167,6 +96,7 @@
             <h2 class="color text-center">your delivery info</h2>
             <form role="form" data-menu-order="customer" data-success="You order was successfully sent!">
               <div class="form-group">
+                <input type="hidden" name="userip" value="<?php echo $_SESSION['ip']; ?>">
                 <input type="text" placeholder="name" id="order-name" name="name">
               </div>
               <div class="form-group">
@@ -210,12 +140,13 @@
               <li style="display:none"><a href="<?php echo base_url() ?>#home">Promo</a></li>
               <li><a href="<?php echo base_url() ?>#promo">Promo</a></li>
               <li><a href="<?php echo base_url() ?>#about-us">About Us</a></li>
-              <li class="active"><a href="site_url('router/open_url/portfolio')">Menu</a></li>
+              <li class="active"><a href="site_url('welcome/menu')">Menu</a></li>
               <li><a href="<?php echo base_url() ?>#contact">Contact Us</a></li>
+              <li><a href="<?php echo site_url('welcome/event'); ?>">Event</a></li>
               <li><a href="#">Features</a>
                 <ul class="sub-menu">
-                  <li><a href="<?php echo site_url('router/open_url/reservation'); ?>">Reserve a Table</a></li>
-                  <li><a href="<?php echo site_url('router/open_url/register'); ?>">Membership</a></li>
+                  <li><a href="<?php echo site_url('welcome/reservation'); ?>">Reserve a Table</a></li>
+                  <li><a href="<?php echo site_url('member'); ?>">Membership</a></li>
                 </ul>
               </li>
             </ul>
@@ -256,7 +187,7 @@
               </ol><a href="#post-images" role="button" data-slide="prev" class="left carousel-control"><i class="fa fa-chevron-left"></i></a><a href="#post-images" role="button" data-slide="prev" class="right carousel-control"><i class="fa fa-chevron-right"></i></a-->
             </div>
             <h3>Fantastically juicy, fresh shortly just delicious.</h3>
-            <p><?php 
+            <p><?php
               echo $menu_desc[0]->deskripsi;
             ?></p>
           </div>

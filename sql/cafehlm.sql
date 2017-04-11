@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2017 at 06:14 PM
+-- Generation Time: Apr 11, 2017 at 08:16 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -34,6 +34,13 @@ CREATE TABLE `anggota` (
   `jenis_anggota` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `anggota`
+--
+
+INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `jumlah_potongan`, `id_pengguna`, `jenis_anggota`, `active`) VALUES
+(1, 'huahua', 10, 5, 'gold', 0);
 
 -- --------------------------------------------------------
 
@@ -98,7 +105,9 @@ INSERT INTO `pesanan` (`id_pesanan`, `id_pengguna`, `nama`, `alamat`, `email`, `
 (1, 5, 'Apa Ini', 'assa', 'ard@kel.daa', '111'),
 (2, 5, 'aaaaa', 'dads', 'ard@kel.daa', '111'),
 (3, 5, 'asdasdsda', 'saadsad', 'ard@kel.daa', '213123'),
-(4, 5, 'yoyoooyooy', 'ass', 'ard@kel.daa', '313');
+(4, 5, 'yoyoooyooy', 'ass', 'ard@kel.daa', '313'),
+(5, 5, 'asda', 'saa', 'ard@kel.daa', '313153443'),
+(6, 5, 'adadadad', 'asddsdda', 'ard@kel.daa', '111');
 
 -- --------------------------------------------------------
 
@@ -164,12 +173,17 @@ CREATE TABLE `produk_pesanan` (
 INSERT INTO `produk_pesanan` (`nama_produk`, `id_pesanan`, `jumlah`) VALUES
 ('Chicken Soup', 2, 0),
 ('Chicken Soup', 3, 2),
+('Chicken Soup', 5, 1),
 ('Chocolate Lava', 4, 1),
 ('Lontong', 4, 1),
+('Lontong', 6, 1),
 ('Mushroom Soup', 4, 2),
+('Mushroom Soup', 6, 1),
 ('Nasi', 2, 0),
 ('Nasi', 3, 1),
-('Pisang Goreng', 2, 0);
+('Pisang Goreng', 2, 0),
+('Pisang Goreng', 5, 1),
+('Zupa Soup', 6, 2);
 
 -- --------------------------------------------------------
 
@@ -219,7 +233,8 @@ CREATE TABLE `reservasi` (
 --
 
 INSERT INTO `reservasi` (`id_reservasi`, `id_pengguna`, `nama`, `email`, `telepon`, `waktu_reservasi`, `jumlah_orang`) VALUES
-(1, 5, 'asaddsa3', 'ard@kel.daa', '111', '2014-01-22 14:00:00', 11);
+(1, 5, 'asaddsa3', 'ard@kel.daa', '111', '2014-01-22 14:00:00', 11),
+(5, 5, 'awawwawa', 'ard@kel.daa', '121', '2014-01-22 14:00:00', 11);
 
 -- --------------------------------------------------------
 
@@ -232,7 +247,7 @@ CREATE TABLE `review` (
   `nama_reviewer` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Anonymous',
   `isi_review` text COLLATE utf8_unicode_ci NOT NULL,
   `id_pengguna` int(11) NOT NULL,
-  `created_time` date NOT NULL
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -240,7 +255,7 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`id_review`, `nama_reviewer`, `isi_review`, `id_pengguna`, `created_time`) VALUES
-(9, 'asdgasdg@sdasdg', 'asdgasdg', 5, '0000-00-00');
+(12, 'ard@kel.daa2', 'qweeqeqesd', 5, '2017-04-11 17:46:06');
 
 -- --------------------------------------------------------
 
@@ -259,7 +274,7 @@ CREATE TABLE `review_fnb` (
 --
 
 INSERT INTO `review_fnb` (`id_review`, `id_produk`, `rating`) VALUES
-(9, 1, 1);
+(12, 1, 4);
 
 --
 -- Indexes for dumped tables
@@ -341,7 +356,7 @@ ALTER TABLE `review_fnb`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `kategori_produk`
 --
@@ -356,7 +371,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `produk`
 --
@@ -371,12 +386,12 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `reservasi`
 --
 ALTER TABLE `reservasi`
-  MODIFY `id_reservasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_reservasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --

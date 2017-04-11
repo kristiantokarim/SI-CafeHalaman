@@ -85,10 +85,12 @@ class Member extends CI_Controller {
         $discount = 15;
       }
 
+      $idpenguna = $this->M_Member->getUserId($_SESSION['ip']);
+
       $insert_data = array (
         'nama_anggota' => $nama,
         'jumlah_potongan' => $discount,
-        'id_pengguna' => 1,
+        'id_pengguna' => $idpenguna,
         'jenis_anggota' => $type,
         'active' => 0
       );

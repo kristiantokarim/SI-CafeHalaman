@@ -45,11 +45,11 @@ class Welcome extends CI_Controller {
 	}
 
 	public function reservation() {
-		$this->load->view('reservation');	
+		$this->load->view('reservation');
 	}
 
-	public function register() {
-		$this->load->view('register');
+	public function event() {
+		$this->load->view('event');
 	}
 
 	public function comments() {

@@ -38,11 +38,12 @@
               <li style="display:none"><a href="<?php echo base_url() ?>#home">Promo</a></li>
               <li><a href="<?php echo base_url() ?>#promo">Promo</a></li>
               <li><a href="<?php echo base_url() ?>#about-us">About Us</a></li>
-              <li><a href="<?php echo site_url('router/open_url/portfolio'); ?>">Menu</a></li>
+              <li><a href="<?php echo site_url('welcome/menu'); ?>">Menu</a></li>
               <li><a href="<?php echo base_url() ?>#contact">Contact Us</a></li>
+              <li><a href="<?php echo site_url('welcome/event')?>">Event</a></li>
               <li class="active"><a href="#">Features</a>
                 <ul class="sub-menu">
-                  <li><a href="<?php echo site_url('router/open_url/reservation'); ?>">Reserve a Table</a></li>
+                  <li><a href="<?php echo site_url('welcome/reservation'); ?>">Reserve a Table</a></li>
                   <li class="active"><a href="#">Membership</a></li>
                 </ul>
               </li>
