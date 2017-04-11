@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.0.2
+-- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 10, 2017 at 05:00 PM
--- Server version: 5.7.17-0ubuntu0.16.10.1
--- PHP Version: 7.0.15-0ubuntu0.16.10.4
+-- Host: 127.0.0.1
+-- Generation Time: Apr 11, 2017 at 06:14 PM
+-- Server version: 10.0.17-MariaDB
+-- PHP Version: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -69,6 +67,14 @@ CREATE TABLE `pengguna` (
   `ip_address` varchar(12) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `pengguna`
+--
+
+INSERT INTO `pengguna` (`id_pengguna`, `ip_address`) VALUES
+(4, '::1'),
+(5, '127.0.0.1');
+
 -- --------------------------------------------------------
 
 --
@@ -77,9 +83,22 @@ CREATE TABLE `pengguna` (
 
 CREATE TABLE `pesanan` (
   `id_pesanan` int(11) NOT NULL,
+  `id_pengguna` int(11) NOT NULL,
+  `nama` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `alamat` text COLLATE utf8_unicode_ci NOT NULL,
-  `id_pengguna` int(11) NOT NULL
+  `email` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `telepon` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `pesanan`
+--
+
+INSERT INTO `pesanan` (`id_pesanan`, `id_pengguna`, `nama`, `alamat`, `email`, `telepon`) VALUES
+(1, 5, 'Apa Ini', 'assa', 'ard@kel.daa', '111'),
+(2, 5, 'aaaaa', 'dads', 'ard@kel.daa', '111'),
+(3, 5, 'asdasdsda', 'saadsad', 'ard@kel.daa', '213123'),
+(4, 5, 'yoyoooyooy', 'ass', 'ard@kel.daa', '313');
 
 -- --------------------------------------------------------
 
@@ -133,10 +152,24 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `harga`, `id_kategori`, `deskr
 --
 
 CREATE TABLE `produk_pesanan` (
-  `id_produk` int(11) NOT NULL,
+  `nama_produk` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `id_pesanan` int(11) NOT NULL,
   `jumlah` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `produk_pesanan`
+--
+
+INSERT INTO `produk_pesanan` (`nama_produk`, `id_pesanan`, `jumlah`) VALUES
+('Chicken Soup', 2, 0),
+('Chicken Soup', 3, 2),
+('Chocolate Lava', 4, 1),
+('Lontong', 4, 1),
+('Mushroom Soup', 4, 2),
+('Nasi', 2, 0),
+('Nasi', 3, 1),
+('Pisang Goreng', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -174,9 +207,19 @@ INSERT INTO `promo` (`id_promo`, `foto_promo`, `expired_date`) VALUES
 CREATE TABLE `reservasi` (
   `id_reservasi` int(11) NOT NULL,
   `id_pengguna` int(11) NOT NULL,
-  `no_meja` int(2) NOT NULL DEFAULT '0',
-  `waktu_reservasi` timestamp NULL DEFAULT NULL
+  `nama` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `telepon` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `waktu_reservasi` timestamp NULL DEFAULT NULL,
+  `jumlah_orang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `reservasi`
+--
+
+INSERT INTO `reservasi` (`id_reservasi`, `id_pengguna`, `nama`, `email`, `telepon`, `waktu_reservasi`, `jumlah_orang`) VALUES
+(1, 5, 'asaddsa3', 'ard@kel.daa', '111', '2014-01-22 14:00:00', 11);
 
 -- --------------------------------------------------------
 
@@ -188,8 +231,16 @@ CREATE TABLE `review` (
   `id_review` int(11) NOT NULL,
   `nama_reviewer` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Anonymous',
   `isi_review` text COLLATE utf8_unicode_ci NOT NULL,
-  `id_pengguna` int(11) NOT NULL
+  `id_pengguna` int(11) NOT NULL,
+  `created_time` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`id_review`, `nama_reviewer`, `isi_review`, `id_pengguna`, `created_time`) VALUES
+(9, 'asdgasdg@sdasdg', 'asdgasdg', 5, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -202,6 +253,13 @@ CREATE TABLE `review_fnb` (
   `id_produk` int(11) NOT NULL,
   `rating` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `review_fnb`
+--
+
+INSERT INTO `review_fnb` (`id_review`, `id_produk`, `rating`) VALUES
+(9, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -238,13 +296,14 @@ ALTER TABLE `pesanan`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`),
+  ADD UNIQUE KEY `nama_produk` (`nama_produk`),
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
 -- Indexes for table `produk_pesanan`
 --
 ALTER TABLE `produk_pesanan`
-  ADD PRIMARY KEY (`id_produk`,`id_pesanan`),
+  ADD PRIMARY KEY (`nama_produk`,`id_pesanan`),
   ADD KEY `c_pesanan_pp` (`id_pesanan`);
 
 --
@@ -292,12 +351,12 @@ ALTER TABLE `kategori_produk`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `produk`
 --
@@ -312,12 +371,12 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `reservasi`
 --
 ALTER TABLE `reservasi`
-  MODIFY `id_reservasi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_reservasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Constraints for dumped tables
 --
@@ -345,7 +404,7 @@ ALTER TABLE `produk`
 --
 ALTER TABLE `produk_pesanan`
   ADD CONSTRAINT `c_pesanan_pp` FOREIGN KEY (`id_pesanan`) REFERENCES `pesanan` (`id_pesanan`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `c_produk_pp` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `c_produk_pp` FOREIGN KEY (`nama_produk`) REFERENCES `produk` (`nama_produk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `reservasi`
@@ -365,7 +424,6 @@ ALTER TABLE `review`
 ALTER TABLE `review_fnb`
   ADD CONSTRAINT `c_p_fnb` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `c_r_fnb` FOREIGN KEY (`id_review`) REFERENCES `review` (`id_review`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
