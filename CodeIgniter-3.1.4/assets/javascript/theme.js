@@ -114,20 +114,20 @@ function addNewStyle(newStyle) {
 }
 
 jQuery.fn.isOnScreen = function(){
-     
+
     var win = $(window);
-     
+
     var viewport = {
         top : win.scrollTop(),
         left : win.scrollLeft()
     };
     viewport.right = viewport.left + win.width();
     viewport.bottom = viewport.top + win.height();
-     
+
     var bounds = this.offset();
     bounds.right = bounds.left + this.outerWidth();
     bounds.bottom = bounds.top + this.outerHeight();
-     
+
     return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
 };
 
@@ -145,10 +145,10 @@ jQuery(function($) {
 			$('.site-navigation').height($(window).height() - 97);
 		}
 	});
-	
+
 
 	//close the menu when item is clicked
-	$("body.mobile-menu nav.navbar ul.site-navigation li > a").bind("click", function(){	
+	$("body.mobile-menu nav.navbar ul.site-navigation li > a").bind("click", function(){
 	  	$('body').toggleClass('mobile-menu');
 	});
 
@@ -183,10 +183,10 @@ jQuery(function($) {
 	$(".carousel-inner").swipe( {
 		//Generic swipe handler for all directions
 		swipeLeft:function(event, direction, distance, duration, fingerCount) {
-			$(this).parent().carousel('prev'); 
+			$(this).parent().carousel('prev');
 		},
 		swipeRight: function() {
-			$(this).parent().carousel('next'); 
+			$(this).parent().carousel('next');
 		},
 		//Default is 75px, set to 0 for demo so any distance triggers swipe
 		threshold:0
@@ -201,7 +201,7 @@ jQuery(function($) {
 	/* Navigation links (smooth scroll) */
 
 	$('.site-navigation a[href*=#]:not([href=#])').click(function() {
-	  if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+	  if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
 	      || location.hostname == this.hostname) {
 
 	    var target = $(this.hash);
@@ -219,7 +219,7 @@ jQuery(function($) {
 	});
 
 	$('.site-logo a[href*=#]:not([href=#])').click(function() {
-	  if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+	  if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
 	      || location.hostname == this.hostname) {
 
 	    var target = $(this.hash);
@@ -253,7 +253,7 @@ jQuery(function($) {
 				$('.site-navigation > li').removeClass('active');
 				$('.site-navigation a[href*="' + val + '"]').parent().addClass('active');
 				return false;
-			} 
+			}
 		});
 	}
 
@@ -638,7 +638,7 @@ jQuery(function($) {
 	          el.find(".carousel-inner").html(msg);
 	        }
 	    });
-	    
+
 	});
 	} catch(e) {}
         /* Validation */
@@ -687,7 +687,7 @@ jQuery(function($) {
                 child.parent().append('<span class="error-message">' + child.parents("form").attr("data-required") + '</span>');
                 child.parent().find('.error-message').css("margin-left", -child.parent().find('.error-message').innerWidth()/2);
                 return false;
-            } else if( child.attr("data-validation") == type && 
+            } else if( child.attr("data-validation") == type &&
                 child.val() != "" ) {
 
                 if( !check ) {
@@ -713,7 +713,7 @@ jQuery(function($) {
                 if( !checkElementValidation(child, "email", validateEmail(child.val()), parent.attr("data-email")) ||
                     !checkElementValidation(child, "phone", validateContactNumber(child.val()), parent.attr("data-phone")) ||
                     !checkElementValidation(child, "text_only", validateTextOnly(child.val()), parent.attr("data-text")) ||
-                    !checkElementValidation(child, "number", validateNumberOnly(child.val()), parent.attr("data-number")) 
+                    !checkElementValidation(child, "number", validateNumberOnly(child.val()), parent.attr("data-number"))
                 ) {
                     valid = false;
                 }
@@ -723,7 +723,7 @@ jQuery(function($) {
         }
 	/* Mailing */
 
-	$('form[data-form="contact"]').on("submit", function(e) { 
+	$('form[data-form="contact"]').on("submit", function(e) {
 	  $(".contact-success").remove();
 	  var el = $(this);
 	  var formData = el.serializeObject();
@@ -732,7 +732,7 @@ jQuery(function($) {
 	  	siteURL = siteURL.replace('www.', '');
 	  }
 	  console.log(formData);
-	  
+
 	  if(checkFormValidation(el)) {
 	      try {
 	          $.ajax({

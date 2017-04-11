@@ -18,7 +18,7 @@
   <body class="responsive sticky-menu">
     <!--include colorpicker-->
     <div class="site-wrapper">
-        
+
       <!-- Site Header -->
       <header class="site-header">
         <div class="container">
@@ -95,10 +95,10 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-8">
-                    <input type="text" placeholder="name" name="name">
+                    <input type="text" placeholder="name" name="nama">
                   </div>
                   <div class="col-md-4">
-                    <input type="text" placeholder="how many?" name="seats">
+                    <input type="text" placeholder="how many?" name="jumlah_orang">
                   </div>
                 </div>
               </div>

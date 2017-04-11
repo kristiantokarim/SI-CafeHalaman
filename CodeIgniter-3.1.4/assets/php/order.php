@@ -4,6 +4,13 @@
     $from = 'support@anpsthemes.com';
     $subject = 'Order on Cafe Halaman';
 
+    $link = mysqli_connect("localhost", "root", "", "cafehlm");
+
+    // Check connection
+    if ($link === false) {
+        die("ERROR: Could not connect.");
+    }
+
     $message = '';
 
     /* Order */
@@ -12,6 +19,7 @@
     $message .= '<table cellpadding="0" cellspacing="0">';
     foreach ($_POST['order_items'] as $key => $value) {
         $message .= "<tr><td style='padding: 5px 20px 5px 5px'><strong>" . urldecode($key) . ":</strong>" . "</td><td style='padding: 5px; color: #444'>" . $value . "</td></tr>";
+        echo "YEYEYEYEYEYYEYEYE: ".substr($value, 2)."\n";
     }
     $message .= '</table>';
 
@@ -26,6 +34,32 @@
     }
     $message .= '</table>';
 
+    $nama = $_POST['form_data']['name'];
+    $email = $_POST['form_data']['email'];
+    $phone = $_POST['form_data']['phone'];
+    $alamat = $_POST['form_data']['address'];
+
+    $query = "INSERT INTO pesanan (id_pengguna, nama, alamat, email, telepon) VALUES ('5','".$nama."','".$alamat."','".$email."','".$phone."');";
+    if(mysqli_query($link, $query)){
+        echo "Record pesanan inserted successfully.";
+        $idpesanan = mysqli_insert_id($link);
+        foreach ($_POST['order_items'] as $key => $value) {
+          if (urldecode($key) != "TOTAL") {
+            $query = "INSERT INTO produk_pesanan (nama_produk, id_pesanan, jumlah) VALUES ('".$key."','".$idpesanan."','".substr($value, 2)."');";
+            if(mysqli_query($link, $query)){
+                echo "Records produk_pesanan inserted successfully.";
+            } else{
+                echo "ERROR.";
+            }
+          }
+        }
+    } else{
+        echo "ERROR.";
+        $idpesanan = 0;
+    }
+
+    mysqli_close($link);
+
     $headers = 'From: ' . $from . "\r\n" .
             'Reply-To: ' . $from . "\r\n" .
             'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
@@ -35,17 +69,17 @@
       ->setPassword('xx');
 
     $messagex = Swift_Message::newInstance();
- 
+
     //Give the message a subject
     $messagex->setSubject($subject)
       ->setFrom($to)
       ->setTo($to)
       ->setBody($message)
       ->addPart($message, 'text/html');
- 
+
     //Create the Mailer using your created Transport
     $mailer = Swift_Mailer::newInstance($transport);
- 
+
     //Send the message
     $result = $mailer->send($messagex);
     //mail($to, $subject, $message, $headers);
