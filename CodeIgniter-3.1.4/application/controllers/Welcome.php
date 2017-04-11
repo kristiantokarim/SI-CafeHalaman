@@ -20,7 +20,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()	{
 		$this->load->model('M_Promo');
+		$this->load->model('M_Pengguna');
 		$data['promo'] = $this->M_Promo->getPromo();
+		$this->M_Pengguna->getOrCreatePengguna($_SERVER['REMOTE_ADDR']);
 		$this->load->view('welcome_message',$data);
 	}
 
@@ -33,15 +35,17 @@ class Welcome extends CI_Controller {
 
 	public function descMenu($id) {
 		$this->load->model('M_Menu');
+		$this->load->model('M_Review');
+		$data['categories'] = $this->M_Menu->getAllKategori();
+		$data['menus'] = $this->M_Menu->getAllMenu();
+		$data['count_menu'] = count($this->M_Menu->getAllMenu());
 		$data['menu_desc'] = $this->M_Menu->getMenuDetails($id);
+		$data['count_review'] = $this->M_Review->getCountReview($id);
 		$this->load->view('menu-desc',$data);
 	}
 
 	public function reservation() {
-		$this->load->model('M_Menu');
-		$data['categories'] = $this->M_Menu->getAllKategori();
-		$data['menus'] = $this->M_Menu->getAllMenu();
-		$this->load->view('reservation',$data);	
+		$this->load->view('reservation');	
 	}
 
 	public function register() {
@@ -53,9 +57,9 @@ class Welcome extends CI_Controller {
 		$phone_data = $this->input->post('phone');
 		$message_data = $this->input->post('message');
 		$rating_data = $this->input->post('rating');
-		echo $email_data.'\n';
-		echo $phone_data.'\n';
-		echo $message_data.'\n';
-		echo $rating_data.'\n';
+		$id_data = $this->input->post('id_prod');
+		$this->load->model('M_Review');
+		$this->M_Review->insertReview($_SESSION['ip'],$message_data,$email_data,$rating_data,$id_data);
+		$this->descMenu($id_data);
 	}
 }

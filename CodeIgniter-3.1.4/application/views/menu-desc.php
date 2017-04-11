@@ -17,7 +17,182 @@
   <!--include colorpicker-->
   <div class="site-wrapper">
 
+    <div class="order-menu-wrapper">
+        <button class="close-order fa fa-cutlery"></button>
+        <div class="order-menu">
+          <button class="mobile-close">×</button>
+          <div class="order-header">
+            <svg style= "display:none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="126px" height="112px" viewBox="0 0 126 112" enable-background="new 0 0 126 112" xml:space="preserve" class="mini-logo">
+              <g>
+                <g>
+                  <g>
+                    <path d="M63.016,1.134C55.414,6.166,53.994,17.37,53,29c5.021,1.321,9.101,3.579,10.016,8.998 C63.93,32.579,68.01,30.321,73.031,29C72.037,17.37,70.617,6.166,63.016,1.134z"></path>
+                  </g>
+                </g>
+              </g>
+              <g>
+                <g>
+                  <g>
+                    <path d="M63.125,49.996C61.076,24.065,20.794,22.264,1,34c0,0.667,0.167,0.25,0.167,0.917C7.297,55.219,27.661,71.48,55.109,64 c-6.523,7.979,3.71,30.104-5.01,40c3.785,3.008,10.959,1.13,13.026-2.999c2.068,4.129,9.242,6.007,13.027,2.999 c-8.721-9.896,1.512-32.021-5.011-40c27.448,7.48,47.813-8.781,53.942-29.083c0-0.667,0.167-0.25,0.167-0.917 C105.457,22.264,65.175,24.065,63.125,49.996z"></path>
+                  </g>
+                </g>
+              </g>
+              <g>
+                <g>
+                  <g>
+                    <path d="M50,70c-25.705-1.039-29.236,20.098-34,40C31.967,101.301,53.156,97.822,50,70z"></path>
+                  </g>
+                </g>
+              </g>
+              <g>
+                <g>
+                  <g>
+                    <path d="M76.297,70c25.705-1.039,29.236,20.098,34,40C94.33,101.301,73.141,97.822,76.297,70z"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+            <input type="text" id="order-search" placeholder="search the menu">
+          </div>
+            <?php
+              foreach($categories as $category) { ?>
+                <section>
+                <h2 class="color text-center"><?php echo $category->nama_kategori;?></h2> 
 
+                <?php foreach($menus as $menu) { 
+                    if ($menu->nama_kategori == $category->nama_kategori) { ?>
+                      <article class="food-item price-right">
+                      <header>
+                        <h3><?php echo $menu->nama_produk ?></h3>
+                        <h4 class="price"><span>Rp</span><?php echo $menu->harga ;?></h4>
+                        <div class="quantity">
+                          <button class="minus">-</button><span class="num">0</span>
+                          <button class="plus">+</button>
+                        </div>
+                      </header>
+                    </article> 
+            <?php
+                  }
+                }
+                ?></section><?php
+              }
+            ?>
+            <!--h2 class="color text-center">delicious soups</h2>
+            <article id="chicken-pizza" class="food-item price-right">
+              <header>
+                <h3>tomato soup</h3>
+                <h4 class="price"><span>$</span>4,5</h4>
+                <div class="quantity">
+                  <button class="minus">-</button><span class="num">0</span>
+                  <button class="plus">+</button>
+                </div>
+              </header>
+              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
+            </article>
+            <article id="pepperoni-pizza" class="food-item price-right">
+              <header>
+                <h3>chicken soup</h3>
+                <h4 class="price"><span>$</span>6.6</h4>
+                <div class="quantity">
+                  <button class="minus">-</button><span class="num">0</span>
+                  <button class="plus">+</button>
+                </div>
+              </header>
+              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
+            </article>
+            <article id="kebab-pizza" class="food-item price-right">
+              <header>
+                <h3>mushroom soup</h3>
+                <h4 class="price"><span>$</span>5</h4>
+                <div class="quantity">
+                  <button class="minus">-</button><span class="num">0</span>
+                  <button class="plus">+</button>
+                </div>
+              </header>
+              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
+            </article>
+          </section>
+          <section>
+            <h2 class="color text-center">main course </h2>
+            <article id="rucola-pizza" class="food-item price-right">
+              <header>
+                <h3>beef stake</h3>
+                <h4 class="price"><span>$</span>6</h4>
+                <div class="quantity">
+                  <button class="minus">-</button><span class="num">0</span>
+                  <button class="plus">+</button>
+                </div>
+              </header>
+              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
+            </article>
+            <article id="cheezy-pizza" class="food-item price-right">
+              <header>
+                <h3>chicken salad</h3>
+                <h4 class="price"><span>$</span>5</h4>
+                <div class="quantity">
+                  <button class="minus">-</button><span class="num">0</span>
+                  <button class="plus">+</button>
+                </div>
+              </header>
+              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
+            </article>
+            <article id="tomatto-pizza" class="food-item price-right">
+              <header>
+                <h3>lamb chops </h3>
+                <h4 class="price"><span>$</span>4</h4>
+                <div class="quantity">
+                  <button class="minus">-</button><span class="num">0</span>
+                  <button class="plus">+</button>
+                </div>
+              </header>
+              <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
+            </article>
+          </section-->
+          <div class="order-footer">
+            <h6 class="price text-center color">total: $<span>0</span></h6>
+            <textarea placeholder="Add Notes" class="order-notes hidden"></textarea>
+            <div class="row">
+              <div class="col-md-6">
+                <button data-menu-order="notes" class="btn btn-md">add order notes</button>
+              </div>
+              <div class="col-md-6">
+                <button data-menu-order="review" class="btn btn-md">review your order</button>
+              </div>
+            </div>
+          </div>
+          <div class="order-review hidden">
+            <h2 class="color text-center">your order</h2>
+            <ul class="order-summary"></ul>
+            <h6 class="price text-center color">total: $<span>0</span></h6>
+            <h2 class="color text-center">your delivery info</h2>
+            <form role="form" data-menu-order="customer" data-success="You order was successfully sent!">
+              <div class="form-group">
+                <input type="text" placeholder="name" id="order-name" name="name">
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="email" id="order-email" name="email">
+              </div>
+              <div class="form-group">
+                <input type="tel" placeholder="phone" id="order-phone" name="phone">
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="delivery address" id="order-address" name="address">
+              </div>
+              <div class="form-group">
+                <textarea placeholder="Add Notes" name="note" class="order-notes hidden"></textarea>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <button data-menu-order="back" class="btn btn-md">go back</button>
+                </div>
+                <div class="col-md-6">
+                  <button data-menu-order="place" type="submit" class="btn btn-md">place order</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     <!-- Site Header -->
     <header class="site-header">
       <div class="container">
@@ -93,9 +268,10 @@
           <div class="row">
             <div class="col-md-9">
               <article>
-                <h5 id="comments" class="comments-title">comments <span class="color">(3)</span></h5>
+                <?php if (count($count_review) > 0) {  ?>
+                <h5 id="comments" class="comments-title">comments <span class="color">(<?php echo count($count_review);?>)</span></h5>
                 <ul class="comment-list">
-                  <li class="comment depth-1">
+                  <!--li class="comment depth-1">
                     <article><img src="<?php echo base_url(); ?>assets/images/author-1.jpg" alt="Sara Doe">
                       <header>
                         <h5>Sara Doe</h5><span class="date">25.3.2014</span><a href="#" class="comment-reply-link">reply</a>
@@ -112,18 +288,24 @@
                         </article>
                       </li>
                     </ul>
-                  </li>
+                  </li-->
+                  <?php
+                    foreach($count_review as $review) {
+                  ?>
                   <li class="comment depth-1">
                     <article><img src="<?php echo base_url(); ?>assets/images/author-3.jpg" alt="Jenny Smiles">
                       <header>
-                        <h5>Jenny Smiles</h5><span class="date">25.3.2014</span><a href="#" class="comment-reply-link">reply</a>
+                        <h5><?php echo $review->nama_reviewer ?></h5><span class="date"><?php echo $review->created_time ?></span><div class="comment-reply-link"><?php echo 'Rating : '.$review->rating;?></div>
                       </header>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ipsum enim, fermentum eu dui eget, vestibulum vulputate massa. Etiam congue co modo dui, ut imperdiet risus vestibulum eu. Morbi molestie tortor nec consequat dictum. Pellentesque vitae tellus tellus. Vestibulum vulputate massa.</p>
+                      <p><?php echo $review->isi_review; ?></p>
                     </article>
                   </li>
+                  <?php } ?>
                 </ul>
+                <?php }?>
                 <h5 class="comments-submit-title">leave a comment</h5>
                 <form class="comment-form" method="post" action="/welcome/comments">
+                  <input type="text" style="display: none" name="id_prod" value="<?php echo  $menu_desc[0]->id_produk ;?>">
                   <div class="row">
                     <div class="col-sm-12">
                       <input type="email" placeholder="e-mail" name = "email">
@@ -157,12 +339,15 @@
       </section>
     <section class="load-more text-center">
       <div class="container">
-        <div class="row"><a href="#" class="btn btn-md"><i class="fa fa-chevron-left"></i>previous</a><a href="<?php echo base_url(); ?>" class="btn btn-md secondary"><i class="fa fa-home"> </i>home</a><a href="#" class="btn btn-md">next<i class="fa fa-chevron-right"></i></a></div>
-      </div>
-    </section>
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1> <span class="color">all you need</span>, give it a go</h1><a href="#" class="btn btn-md">buy kateleya</a>
+        <div class="row">
+        <?php if (($menu_desc[0]->id_produk)-1 > 0) { ?>
+        <a href="<?php $x = ($menu_desc[0]->id_produk)-1;echo site_url('welcome/descMenu/'.$x); ?>" class="btn btn-md">
+          <i class="fa fa-chevron-left"></i>previous</a><?php }?><a href="<?php echo base_url(); ?>" class="btn btn-md secondary">
+          <i class="fa fa-home"> </i>home</a>
+          <?php if (($menu_desc[0]->id_produk)+1 <= $count_menu) { ?>
+          <a href="<?php $x = ($menu_desc[0]->id_produk)+1;echo site_url('welcome/descMenu/'.$x); ?>" class="btn btn-md">next
+          <i class="fa fa-chevron-right"></i></a> <?php }?>
+        </div>
       </div>
     </section>
     <!-- Including scripts-->

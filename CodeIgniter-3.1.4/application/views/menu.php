@@ -26,7 +26,7 @@
         <div class="order-menu">
           <button class="mobile-close">×</button>
           <div class="order-header">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="126px" height="112px" viewBox="0 0 126 112" enable-background="new 0 0 126 112" xml:space="preserve" class="mini-logo">
+            <svg style= "display:none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="126px" height="112px" viewBox="0 0 126 112" enable-background="new 0 0 126 112" xml:space="preserve" class="mini-logo">
               <g>
                 <g>
                   <g>
@@ -58,8 +58,30 @@
             </svg>
             <input type="text" id="order-search" placeholder="search the menu">
           </div>
-          <section>
-            <h2 class="color text-center">delicious soups</h2>
+            <?php
+              foreach($categories as $category) { ?>
+                <section>
+                <h2 class="color text-center"><?php echo $category->nama_kategori;?></h2> 
+
+                <?php foreach($menus as $menu) { 
+                    if ($menu->nama_kategori == $category->nama_kategori) { ?>
+                      <article class="food-item price-right">
+                      <header>
+                        <h3><?php echo $menu->nama_produk ?></h3>
+                        <h4 class="price"><span>Rp</span><?php echo $menu->harga ;?></h4>
+                        <div class="quantity">
+                          <button class="minus">-</button><span class="num">0</span>
+                          <button class="plus">+</button>
+                        </div>
+                      </header>
+                    </article> 
+            <?php
+                  }
+                }
+                ?></section><?php
+              }
+            ?>
+            <!--h2 class="color text-center">delicious soups</h2>
             <article id="chicken-pizza" class="food-item price-right">
               <header>
                 <h3>tomato soup</h3>
@@ -129,7 +151,7 @@
               </header>
               <p>onion, carrot, celery, olive oil, tomato purée, sugar, bay leaves, vegetable stock</p>
             </article>
-          </section>
+          </section-->
           <div class="order-footer">
             <h6 class="price text-center color">total: $<span>0</span></h6>
             <textarea placeholder="Add Notes" class="order-notes hidden"></textarea>
